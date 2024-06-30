@@ -1,0 +1,12 @@
+region                = "ap-southeast-2"
+vpc_name              = "eks-vpc"
+vpc_cidr              = "10.0.0.0/16"   
+secondary_cidr_blocks = ["100.65.0.0/16"]
+azs                   = ["ap-southeast-2a", "ap-southeast-2b", "ap-southeast-2c"]
+#public_subnets        = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24"]
+#private_subnets       = ["10.0.3.0/24", "10.0.4.0/24", "10.0.5.0/24"]
+#intra_subnets         = ["10.0.6.0/24", "10.0.7.0/24", "10.0.8.0/24"]
+eks_version           = "1.30"
+#eks_cluster_name     = "eks-demo-cluster"
+project_name          = "demo"
+environment           = "dev"

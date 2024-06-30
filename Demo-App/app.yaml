@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+  namespace: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      serviceAccountName: nginx-deployment-sa
+      volumes:
+        - name: ssm-volume
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: aws-secrets # SecretProviderClass name
+      containers:
+        - image: nginx
+          name: nginx
+          env:
+            - name: DOCUMENTDB_ENV_VAR
+              valueFrom:
+                secretKeyRef:
+                  name: ssm-params
+                  key: documentdb_host_param
+          volumeMounts:
+            - name: ssm-volume
+              mountPath: "/mnt/secrets-store"
+              readOnly: true
