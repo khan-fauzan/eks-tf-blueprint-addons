@@ -95,7 +95,7 @@ module "eks" {
     # One access entry with a policy associated
     SSO_Console_Access = {
       kubernetes_groups = []
-      principal_arn     = "arn:aws:iam::${var.account_id}:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_AdministratorAccess_ad6cc86301b2b021"
+      principal_arn     = "arn:aws:iam::${var.account_id}:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_AdministratorAccess"
       user_name         = "admin"
       type              = "STANDARD"
       
